@@ -11,7 +11,7 @@ public record PatientPreView(
         String phoneNumber
 ) {
     private static final Collator POLISH_COLLATOR =
-            Collator.getInstance(new Locale("pl", "PL"));
+            Collator.getInstance(Locale.of("pl", "PL"));
 
     static {
         POLISH_COLLATOR.setStrength(Collator.PRIMARY);

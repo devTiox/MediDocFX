@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public class SceneManager {
@@ -17,8 +18,6 @@ public class SceneManager {
     private static Stage stage;
 
     private static final Map<String, String> scenes = new HashMap<>();
-//    private static final Map<String, Parent> viewCache = new HashMap<>();
-//    private static final Map<String, Object> controllerCache = new HashMap<>();
 
     static {
         scenes.put("MENU", "menu-view.fxml");
@@ -47,7 +46,7 @@ public class SceneManager {
             }
             Scene scene = new Scene(view);
             scene.getStylesheets().add(
-                    SceneManager.class.getResource("app.css").toExternalForm()
+                    Objects.requireNonNull(SceneManager.class.getResource("app.css")).toExternalForm()
             );
             stage.setScene(scene);
             stage.sizeToScene();

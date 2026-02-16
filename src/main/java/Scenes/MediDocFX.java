@@ -5,13 +5,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class MediDocFX extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException{
+    public void start(Stage stage){
         try {
             DataBase.setUp();
         } catch (SQLException e) {

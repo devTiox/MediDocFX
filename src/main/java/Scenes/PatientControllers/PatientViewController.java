@@ -8,7 +8,6 @@ import MyAPI.VisitsService;
 import Scenes.EntryMode;
 import Scenes.OnShowAware;
 import Scenes.SceneManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -73,13 +72,13 @@ public class PatientViewController implements OnShowAware {
     @FXML
     public void delete(){
         if(SceneManager.confirmYesNo("Potwierdzenie", "Usuwanie Pacjenta","Na pewno chcesz usunąć pacjenta??")) {
-            PatientService.deletePatient(currentPatient);
+            if(!PatientService.deletePatient(currentPatient)) return;
             PatientsList.deletePatient(currentPatient);
             goBack();
         }
     }
 
-    public void showPreDocumentation(ActionEvent actionEvent) {
+    public void showPreDocumentation() {
         SceneManager.switchTo("PREDOCUMENTATION_SCENE", EntryMode.READ_ONLY, currentPatient.getID());
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Scenes.PatientControllers.PatientViewController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <BorderPane.margin>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </BorderPane.margin>
+            <TextArea fx:id="docArea"
+                      prefRowCount="8"
+                      HBox.hgrow="ALWAYS"
+                      editable="false"
+                      focusTraversable="false"
+                      wrapText="true"/>
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="60" right="30" bottom="30" left="30"/>
+                </padding>
+                <Button text="Edytuj" onAction="#editPatientData"/>
+                <Button text="Wczesna dokumentacja" onAction="#showPreDocumentation"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox fx:id="visitsBox" spacing="8">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <BorderPane>
+            <BorderPane.margin>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </BorderPane.margin>
+            <left>
+                <Button text="Wróć" onAction="#goBack"/>
+            </left>
+            <center>
+                <Button text="Nowa Wizyta" onAction="#newVisit"/>
+            </center>
+            <right>
+                <Button text="Usuń" onAction="#delete" styleClass="delete-button"/>
+            </right>
+        </BorderPane>
+    </bottom>
+
+</BorderPane>

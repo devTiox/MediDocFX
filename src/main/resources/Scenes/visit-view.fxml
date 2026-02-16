@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="Scenes.PatientControllers.VisitController">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Button text="Wróć" onAction="#goBack"/>
+
+    <TextArea fx:id="treatmentField" wrapText="true" promptText="Leczenie:" prefRowCount="1" VBox.vgrow="ALWAYS"/>
+    <TextArea fx:id="notesField" wrapText="true" promptText="Notatki:" prefRowCount="3" VBox.vgrow="ALWAYS"/>
+
+    <BorderPane>
+        <left>
+            <Button fx:id="button"/>
+        </left>
+        <right>
+            <Button fx:id="deleteButton" text="Usuń Wizyte" onAction="#delete" styleClass="delete-button"/>
+        </right>
+    </BorderPane>
+
+</VBox>

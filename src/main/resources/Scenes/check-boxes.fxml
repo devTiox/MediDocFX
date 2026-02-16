@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="Scenes.PatientControllers.CheckBoxesController">
+
+    <top>
+        <Button text="Wróć" onAction="#goBack"/>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <Accordion fx:id="accordion"/>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <Button text="Zapisz" onAction="#submitCheckBoxes"/>
+    </bottom>
+
+</BorderPane>

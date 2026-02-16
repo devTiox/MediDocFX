@@ -1,0 +1,94 @@
+/* TŁO aplikacji */
+.root {
+    -fx-background-color: pink;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 18px;
+}
+
+/* LABEL */
+.label {
+    -fx-text-fill: #1f2937;
+}
+
+/* TEXTFIELD */
+.text-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #cbd5e1;
+    -fx-padding: 6 8 6 8;
+}
+
+/* TEXTAREA */
+.text-area {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #cbd5e1;
+}
+
+/* BUTTON */
+.button {
+    -fx-background-color: #C1EDCC;
+    -fx-text-fill: black;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+}
+
+.delete-button{
+    -fx-background-color: #C1EDCC;
+    -fx-text-fill: black;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+}
+
+/* BUTTON hover */
+
+.button:hover {
+    -fx-background-color: #99B642;
+}
+
+.delete-button:hover{
+    -fx-background-color: red;
+}
+
+.check-box {
+    -fx-text-fill: black;
+}
+/* CHECKBOX zaznaczony */
+.check-box:selected {
+    -fx-text-fill: #55D955;
+}
+
+/* ScrollPane: usuń tło i tło viewportu */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;              /* ważne: tło "skórki" */
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;        /* to najczęściej robi białe */
+}
+
+/* jakbyś miał jeszcze "corner" (róg przy scrollach) */
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+/* Accordion / TitledPane też lubią mieć własne tło */
+.accordion {
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .content {
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .title {
+    -fx-background-color: transparent;
+}
+
+/* BorderPane / VBox / HBox same z siebie są przezroczyste,
+   ale jeśli gdzieś dałeś im background w css to to nadpisze */
+.border-pane, .vbox, .hbox {
+    -fx-background-color: transparent;
+    -fx-background-insets: 16 16 16 16;
+}

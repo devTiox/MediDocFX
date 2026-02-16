@@ -3,7 +3,6 @@ package MyAPI;
 import Data.DataBase.PatientsTable;
 import Data.Models.Patient;
 import Data.Models.PatientPreView;
-import javafx.fxml.FXML;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,11 +11,15 @@ import java.util.List;
 
 public class PatientsList {
 
-    private static final List<PatientPreView> patientsList = new ArrayList<>();
+    private static List<PatientPreView> patientsList;
 
-    public static void loadPatientsList() throws SQLException {
-        patientsList.clear();
-        patientsList.addAll(PatientsTable.loadPatientsPreviews());
+    public static void loadPatientsList(){
+        patientsList = new ArrayList<>();
+        try {
+            patientsList.addAll(PatientsTable.loadPatientsPreviews());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         patientsList.sort(PatientPreView.BY_LN_N_ID);
     }
 
@@ -30,11 +33,7 @@ public class PatientsList {
     }
 
     public static List<PatientPreView> getPatients() {
-        try {
-            loadPatientsList();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        if(patientsList == null) loadPatientsList();
         return List.copyOf(patientsList);
     }
 

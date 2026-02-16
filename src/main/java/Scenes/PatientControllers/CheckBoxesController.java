@@ -2,7 +2,9 @@ package Scenes.PatientControllers;
 
 import Data.Lists;
 import Data.Models.Patient;
+import Data.Models.PatientPreView;
 import MyAPI.PatientService;
+import MyAPI.PatientsList;
 import Scenes.EntryMode;
 import Scenes.SceneManager;
 import javafx.fxml.FXML;
@@ -35,18 +37,6 @@ public class CheckBoxesController {
         addCategory("Inne objawy", Lists.OTHER);
     }
 
-    private static final String CB_ON  = "-fx-text-fill: green; -fx-font-weight: bold;";
-    private static final String CB_OFF = "-fx-text-fill: black; -fx-font-weight: normal;";
-
-    private void colorize(CheckBox cb) {
-        // ustaw start
-        cb.setStyle(cb.isSelected() ? CB_ON : CB_OFF);
-
-        // reaguj na zmiany
-        cb.selectedProperty().addListener((_, _, selected) -> cb.setStyle(selected ? CB_ON : CB_OFF));
-    }
-
-
     private void addCategory(String name, List<String> items) {
 
         VBox box = new VBox(6);
@@ -56,7 +46,6 @@ public class CheckBoxesController {
 
         for (String item : items) {
             CheckBox cb = new CheckBox(item);
-//            colorize(cb);
             checkBoxes.add(cb);
             box.getChildren().add(cb);
         }
@@ -80,7 +69,9 @@ public class CheckBoxesController {
         );
 
         int id = PatientService.addPatient(patient);
-        if(!PatientService.loadPatient(id)){
+        boolean check = PatientService.loadPatient(id) &&
+                PatientsList.addPatient(new PatientPreView(id, patient.getLastName(), patient.getName(), patient.getPhoneNumber()));
+        if(!check){
             return;
         }
 

@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -26,7 +25,6 @@ public class PatientsListController {
 
         List<PatientPreView> patients = PatientsList.getPatients();
 
-        // DEBUG – możesz usunąć później
         System.out.println("Patients loaded: " + patients.size());
 
         int pageCount = (int) Math.ceil(
@@ -71,7 +69,7 @@ public class PatientsListController {
 
         btn.setMaxWidth(Double.MAX_VALUE);
 
-        btn.setOnAction(e -> onPatientClicked(p));
+        btn.setOnAction(_ -> onPatientClicked(p));
 
         return btn;
     }
@@ -84,5 +82,4 @@ public class PatientsListController {
     public void goBack(){
         SceneManager.switchTo("MENU", null, null);
     }
-
 }

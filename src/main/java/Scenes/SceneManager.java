@@ -1,10 +1,12 @@
 package Scenes;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,7 +46,14 @@ public class SceneManager {
             if (controller instanceof OnShowAware aware) {
                 aware.onShow(mode, id);
             }
-            Scene scene = new Scene(view);
+            Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+
+            Scene scene = switch(sceneKey){
+                case "MENU", "BASIC_DATA", "PATIENTS_LIST"
+                        -> new Scene(view, bounds.getWidth()*0.3, bounds.getHeight() *0.8);
+                default -> new Scene(view, bounds.getWidth()*0.8, bounds.getHeight() *0.8);
+            };
+
             scene.getStylesheets().add(
                     Objects.requireNonNull(SceneManager.class.getResource("app.css")).toExternalForm()
             );

@@ -8,6 +8,7 @@
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="Scenes.PatientControllers.VisitController">
+
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>

@@ -1,6 +1,7 @@
 package Scenes.PatientControllers;
 
 import Data.Models.Patient;
+import Data.Models.PatientPreView;
 import Data.Models.VisitView;
 import MyAPI.PatientService;
 import MyAPI.PatientsList;
@@ -73,7 +74,9 @@ public class PatientViewController implements OnShowAware {
     public void delete(){
         if(SceneManager.confirmYesNo("Potwierdzenie", "Usuwanie Pacjenta","Na pewno chcesz usunąć pacjenta??")) {
             if(!PatientService.deletePatient(currentPatient)) return;
-            PatientsList.deletePatient(currentPatient);
+            PatientsList.deletePatient(new PatientPreView(currentPatient.getID(),
+                    currentPatient.getLastName(), currentPatient.getName(), currentPatient.getPhoneNumber()));
+
             goBack();
         }
     }

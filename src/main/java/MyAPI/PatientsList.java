@@ -1,10 +1,7 @@
 package MyAPI;
 
-import Data.DataBase.PatientsTable;
-import Data.Models.Patient;
 import Data.Models.PatientPreView;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,11 +12,8 @@ public class PatientsList {
 
     public static void loadPatientsList(){
         patientsList = new ArrayList<>();
-        try {
-            patientsList.addAll(PatientsTable.loadPatientsPreviews());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        patientsList.addAll(PatientService.loadPatientsPreviews());
         patientsList.sort(PatientPreView.BY_LN_N_ID);
     }
 
@@ -33,15 +27,11 @@ public class PatientsList {
     }
 
     public static List<PatientPreView> getPatients() {
-        if(patientsList == null) loadPatientsList();
+        loadPatientsList();
         return List.copyOf(patientsList);
     }
-
-    public static void deletePatient(Patient patient){
-        PatientPreView preView = new PatientPreView(patient.getID(),
-                                                    patient.getLastName(),
-                                                    patient.getName(),
-                                                    patient.getPhoneNumber());
-        patientsList.remove(preView);
+    public static void deletePatient(PatientPreView patient){
+        patientsList.remove(patient);
     }
+
 }

@@ -2,8 +2,10 @@ package MyAPI;
 
 import Data.DataBase.PatientsTable;
 import Data.Models.Patient;
+import Data.Models.PatientPreView;
 
 import java.sql.SQLException;
+import java.util.Collection;
 
 public class PatientService {
 
@@ -55,4 +57,13 @@ public class PatientService {
             throw new RuntimeException(e);
         }
     }
+
+    public static Collection<PatientPreView> loadPatientsPreviews() {
+        try {
+            return PatientsTable.loadPatientsPreviews();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

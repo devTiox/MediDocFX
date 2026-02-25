@@ -2,6 +2,7 @@ package Data.DataBase;
 
 import Data.Models.Patient;
 import Data.Models.PatientPreView;
+import MyAPI.PatientService;
 
 import java.sql.*;
 import java.util.ArrayList;

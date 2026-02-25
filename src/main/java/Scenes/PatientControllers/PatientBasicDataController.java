@@ -1,7 +1,9 @@
 package Scenes.PatientControllers;
 
 import Data.Models.Patient;
+import Data.Models.PatientPreView;
 import MyAPI.PatientService;
+import MyAPI.PatientsList;
 import Scenes.EntryMode;
 import Scenes.OnShowAware;
 import Scenes.SceneManager;
@@ -112,7 +114,7 @@ public class PatientBasicDataController implements OnShowAware {
 
     @FXML
     public void goBack(){
-        if(mode == EntryMode.NEW)
+        if(mode == EntryMode.NEW || mode == EntryMode.RE_EDIT)
             SceneManager.switchTo("MENU", null, null);
         else if(mode == EntryMode.EDIT)
             SceneManager.switchTo("PATIENT_VIEW", null, patientID);

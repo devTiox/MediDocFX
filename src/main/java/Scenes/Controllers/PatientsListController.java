@@ -1,7 +1,10 @@
 package Scenes.Controllers;
 
+import Data.Models.Patient;
 import Data.Models.PatientPreView;
 import MyAPI.PatientsList;
+import Scenes.EntryMode;
+import Scenes.OnShowAware;
 import Scenes.SceneManager;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -13,7 +16,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class PatientsListController {
+public class PatientsListController{
 
     @FXML
     private Pagination pagination;

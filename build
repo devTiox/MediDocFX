@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# Use the official Maven + JDK 24 image so the build is reproducible
+# and does not depend on a local Java or Maven installation.
+BUILDER_IMAGE="maven:3.9.9-eclipse-temurin-24"
+
+# Mount the host project directory into the container at /app.
+# This makes the build output appear in the local ./target directory.
+PROJECT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
+echo "Building fat jar with Docker using ${BUILDER_IMAGE}..."
+
+docker run --rm \
+  -v "${PROJECT_DIR}:/app" \
+  -w /app \
+  "${BUILDER_IMAGE}" \
+  mvn clean package -DskipTests
+
+# After shading, the regular artifact is replaced with the final fat jar.
+echo "Done. Fat jar should be available at: ${PROJECT_DIR}/target/MediDocFX-1.0-SNAPSHOT.jar"

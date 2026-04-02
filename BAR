@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# BAR = build and run.
+# First build a fresh fat jar, then run it locally.
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
+"${SCRIPT_DIR}/build"
+"${SCRIPT_DIR}/run"

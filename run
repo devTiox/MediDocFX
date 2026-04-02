@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# This script assumes the fat jar was already built, for example with `./build`.
+PROJECT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+JAR_PATH="${PROJECT_DIR}/target/MediDocFX-1.0-SNAPSHOT.jar"
+
+if [ ! -f "${JAR_PATH}" ]; then
+  echo "Jar not found: ${JAR_PATH}" >&2
+  echo "Build it first with: ./build" >&2
+  exit 1
+fi
+
+if ! command -v java >/dev/null 2>&1; then
+  echo "Java runtime not found in PATH." >&2
+  echo "Install a compatible JRE/JDK or run the jar another way." >&2
+  exit 1
+fi
+
+# Run the local fat jar on the host so the app can use the host GUI environment.
+exec java -jar "${JAR_PATH}"
